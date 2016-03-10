@@ -1,0 +1,33 @@
+<ion-view view-title="T. K. Test">
+    <ion-content class="padding">
+        <body ng-controller="ChartCtrl as ctrl">
+        <ion-header-bar class="bar-stable">
+            <h1 class="title">Your Kibbled Doggies!</h1>
+        </ion-header-bar>
+
+
+        sdf
+        <!-- place call to backend for list of dogs -->
+        <button class="button button-block button-positive" ng-click="swipepage()">
+            Back to Swipe
+        </button>
+
+    
+        <div class="row header">
+            <div class="col">Name </div>
+            <div class="col">Age</div>
+            <div class="col">Breed</div>
+            <div class="col">Phone Number</div>
+            <div class="col"></div>
+        </div>
+        <div class="row" ng-repeat="data in ctrl.data">
+            <div class="col">{{data.name}}</div>
+            <div class="col">{{data.age}}</div>
+            <div class="col">LK {{data.breed}}</div>
+            <div class="col">{{data.phoneNumber}}</div>
+            <div class="col">
+                <button class="button" ng-click="ctrl.add($index)">Add</button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
