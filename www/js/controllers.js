@@ -1,6 +1,56 @@
 angular.module('starter.controllers', [])
 
 
+.controller('BankCtrl', function($scope, $state, KibblerService) {
+    
+    $scope.dogs = KibblerService.getDogs();
+})
+
+
+.controller('FileCtrl', function($scope, KibblerService, FileService, $state ) {
+  $scope.download ="";
+  $scope.stubDogs = [
+          {
+              name: "Buddy",
+              age: 4,
+              breed: "retriever",
+              contact: "6196666969",
+          },
+          {
+              name: "Rex",
+              age: 3,
+              breed: "bloodhound",
+              contact: "6195555555",
+          }
+      ];
+  
+  $scope.goToDownload = function() {
+      $scope.download = FileService.download($scope.myFile);
+  };
+  
+  $scope.submitForm = function() {
+    console.log($scope.myFile);
+    if($scope.myFile) {
+       FileService.upload($scope.myFile)
+      //FileService.greetings()
+      .then(function(err,result){
+        if(err) {
+          console.log(err);
+        }else{
+          console.log(result);
+        }
+      });
+    }
+  };
+  $scope.getList = function() {
+     
+      $scope.dogs = angular.copy($scope.stubDogs);
+      KibblerService.saveDogs($scope.dogs);
+       $state.go('bank');
+  };
+})
+
+
 .controller('CardsCtrl', function($scope, TDCardDelegate, $state) {
   var cardTypes = [
     { image: '../img/dog1.jpg' },
@@ -12,7 +62,7 @@ angular.module('starter.controllers', [])
 
 
   $scope.bankpage = function() {
-      $state.go('bank');
+      $state.go('file');
   };
   $scope.cardDestroyed = function(index) {
     $scope.cards.splice(index, 1);
@@ -64,11 +114,7 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller('BankCtrl', function($scope, $state) {
-    
-$scope.swipepage = function() {
-      $state.go('swipe');    
-}})
+
 
 
 

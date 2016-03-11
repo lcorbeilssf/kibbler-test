@@ -1,0 +1,29 @@
+<ion-view view-title="Playlists">
+  <ion-content ng-ctrl="FileCtrl">
+    <input type="file" accept="image/*" file-model="myFile" />
+
+
+
+    <form name="doggyForm" novalidate ng-submit="submitForm(doggyForm)">
+      <div class="list list-inset">
+        <label class="item item-input" >
+          <input name="name" type="text" placeholder="Name" ng-model="dog.name" required>
+        </label>
+        <label class="item item-input" >
+          <input name="age" type="text" placeholder="Age" ng-model="dog.age" required>
+        </label>
+      </div>
+      
+      <button type="submit" class="button button-block button-positive">
+        Upload Doggy
+      </button>
+    </form>
+
+
+    <!--<button class="button button-block button-energized" ng-click="submitForm()">Submit</button>-->
+    <button class="button button-block button-energized" ng-click="getList()">List</button>
+    <div class="image">
+      <img ng-src="{{download}}">
+    </div>
+  </ion-content>
+</ion-view>
